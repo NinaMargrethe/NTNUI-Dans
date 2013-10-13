@@ -1,0 +1,85 @@
+<html lang="en" class="ng-app:poledance" id="ng-app" ng-app="poledance" xmlns:ng="http://angularjs.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	
+	
+	<link rel="stylesheet" href="css/bootstrapSwitch.css">
+	<link rel="stylesheet" href="css/bootstrap.css">	
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+	<button class="btn btn-success" ng-click=changeLanguage()>
+		<i class="glyphicon-globe"></i>
+		<div ng-switch-if="$scope.language=='english'">
+			<span class="text">Norwegian<span>
+		</div>
+		<div ng-if="$scope.language=='norwegian'">
+			<span class="text">English</span>			
+		</div>
+	</button> 
+
+	<button class="btn btn-success" ng-click=$dialog.dialog({}).open('modalContent.html')>
+		<i class="glyphicon-plus"></i>
+		<span class="text">Log in</span>
+	</button>
+	<br><br>
+
+	{{$scope.language}}
+
+1 + 1 =  {{1+1}}
+
+
+<h3>Treningstider</h3>
+	<table class="events table table-hover {{swag}}" ng-show="poleEvents">
+		<tr>
+		  <th><span tooltip="Dato"><i class="glyphicon-calendar"></i></span></th>
+		  <th><span tooltip="Tidsrom"><i class="glyphicon-time"></i></span></th>
+		  <th><span tooltip="Sted"><i class="glyphicon-map-marker"></i></span></th>
+		  <th><span tooltip="Nivå"><i class="glyphicon-tags"></i></span></th>
+		  <th><span tooltip="Påmeldte"><i class="glyphicon-flag"></i></span></th>
+		  <th><span tooltip="Påmelding"><i class="icon-user"></i></span></th>
+		</tr>
+
+		<tr ng-repeat="event in poleEvents" class="{{ event.expired }}" >
+		  <td>{{event.date}}</td>
+		  <td>{{event.time}}</td>
+		  <td>{{event.place}}</td>
+		  <td>{{event.level}}</td>
+		  <td>{{event.nrOfAttendees}} <span class="text">/</span> {{event.totalAttendees}}</td>
+		  <td><button class="btn btn-success" ng-click=$dialog.dialog({}).open('modalContent.html')>
+			<i class="glyphicon-plus"></i>
+			<span class="text">Meld på</span>
+			</button>
+		  </td>
+		</tr>
+		
+	  </table>
+
+
+
+  <!-- scripts -->
+  <script src="js/angular.min.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/ui-bootstrap-tpls-0.4.0.min.js"></script>
+  <script src="js/bootstrapSwitch.js"></script>
+  <script src="http://code.angularjs.org/1.0.0rc10/angular-cookies-1.0.0rc10.js"></script>
+ 
+  <script src="js/local_settings.js"></script>
+
+  <script src="js/app.js"></script>
+
+  <!-- services -->
+  <script src="js/services/user.js"></script>
+  
+  <!-- Angular controllers -->
+  <script src="js/controllers/createEvents.js"></script>
+  <script src="js/controllers/viewEvents.js"></script>
+  <script src="js/controllers/signupForEvents.js"></script>
+  <script src="js/controllers/contentmanagement.js"></script>
+
+</body>
+
